@@ -1,0 +1,20 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+
+{% endblock %} 
+{% block content %}
+<section class="cat-container">
+    <div class="card">
+      <div class="card-content">
+        <div class="card-img-container">
+        </div>
+        <h2 class="card-title">{{ game.name }}</h2>
+        <p>A {{ game.genre }}</p>
+        <p>{{ game.description }}</p>
+        <p>Console I play on:{{game.console}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

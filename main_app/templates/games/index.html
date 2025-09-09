@@ -1,42 +1,23 @@
 {% extends 'base.html' %} {% load static %} {% block head %}
-<link
-  rel="stylesheet"
-  href="{% static 'css/cats/cat-index.css' %}"
-/>
+
 {% endblock %} {% block content %}
 
 <section class="page-header">
   <h1>Game List</h1>
-  <!-- <img
-    src="{% static 'images/cool-cat.svg' %}"
-    alt="A cool cat"
-  />
-  <img
-    src="{% static 'images/happy-cat.svg' %}"
-    alt="A happy cat"
-  />
-  <img
-    src="{% static 'images/teacup-cat.svg' %}"
-    alt="A cat in a teacup"
-  />
-  <img
-    src="{% static 'images/cat-in-box.svg' %}"
-    alt="A cat in a box"
-  /> -->
+
 </section>
 
 <section class="card-container">
   {% for game in games %}
   <div class="card">
+    <a href="{% url 'game-detail' game.id %}">
     <div class="card-content">
-      <div class="card-img-container">
-        
-      </div>
       <h2 class="card-title">{{ game.name }}</h2>
       <p>A {{ game.genre }}</p>
       <p>{{ game.description }}</p>
       <p>Console I play on:{{game.console}}</p>
     </div>
+    </a>
   </div>
   {% endfor %}
 </section>
