@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views.generic.edit import CreateView
 from .models import Game
 
 # Create your views here.
@@ -18,3 +18,9 @@ def game_index(request):
 def game_detail(request, game_id):
   game = Game.objects.get(id=game_id)
   return render(request, 'games/detail.html', {'game':game})
+
+
+
+class GameCreate(CreateView):
+  model = Game
+  fields = '__all__'
