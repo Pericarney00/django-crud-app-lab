@@ -21,4 +21,40 @@
     </div>
   </div>
 </section>
+
+<div class="play-container">
+  <section class="plays">
+    <h2>Add a Play</h2>
+    <form 
+      action="{% url 'add-play' game.id %}"
+      method="post" 
+      class="subsection-content" 
+      autocomplete="off"
+    >
+      {% csrf_token %} 
+      {{ play_form.as_p }}
+      <button type="submit" class="btn submit">Add Play</button>
+    </form>
+
+    <h2>Plays</h2>
+    {% if game.play_set.all.count %}
+    {% for play in game.play_set.all%}
+    
+    <div class="container">
+      <h4>Date:</h4>
+      <td>{{play.date}}</td>
+
+      <h4>Note:</h4>
+      <td>{{play.note}}</td>
+
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="subsection-content">
+      <p>⚠️  no plays!</p>
+    </div>
+  {% endif %}
+
+  </section>
+</div>
 {% endblock %}

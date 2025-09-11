@@ -16,7 +16,12 @@ class Game(models.Model):
 
 class Play(models.Model):
   date = models.DateField('Last game-play')
+
   note = models.TextField()
 
+  game = models.ForeignKey(Game, on_delete=models.CASCADE)
+
   def __str__(self):
-    return self.name
+    return f"{self.note} on {self.date}"
+  class Meta:
+    ordering = ["-date"]
