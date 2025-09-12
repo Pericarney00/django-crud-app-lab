@@ -3,7 +3,7 @@ from . import views
 
 
 urlpatterns = [
-  path('', views.home, name='home'),
+  path('', views.Home.as_view(), name='home'),
   path('about/', views.about, name='about'),
   path('games/', views.game_index, name='game-index'),
   path('games/<int:game_id>/', views.game_detail, name = 'game-detail'),
@@ -11,4 +11,6 @@ urlpatterns = [
   path('games/<int:pk>/update/', views.GameUpdate.as_view(), name='game-update'),
   path('games/<int:pk>/delete/', views.GameDelete.as_view(), name='game-delete'),
   path('games/<int:game_id>/add-play/', views.add_play,  name='add-play'),
+  path('accounts/signup/', views.signup, name='signup'),
+
 ]

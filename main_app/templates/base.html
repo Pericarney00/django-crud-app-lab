@@ -5,11 +5,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-
+    <meta name="color-scheme" content="light dark" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.purple.min.css"
+    />
     <title>GameStash</title>
-    {% block head %} 
-    {% endblock %}
+    {% block head %} {% endblock %}
   </head>
   <body>
     <header>
@@ -20,15 +22,24 @@
       </div>
       <nav>
         <ul>
-          <li><a href="{% url 'game-index'%}">GameStash</a></li>
-          <li><a href="{% url 'about' %}">About</a></li>
-          <li><a href="{% url 'game-create' %}">Add a Game</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'game-index'%}">GameStash</a></li>
+            <li><a href="{% url 'game-create' %}">Add a Game</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li>
+              <form id="logout-form" method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Log out</button>
+              </form>
+            </li>
+          {% else %}
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'home' %}">Login</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+          {% endif %}
         </ul>
       </nav>
     </header>
-    <main>
-      {% block content %} 
-      {% endblock %}
-    </main>
+    <main>{% block content %} {% endblock %}</main>
   </body>
 </html>

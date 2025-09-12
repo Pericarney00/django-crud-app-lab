@@ -9,14 +9,14 @@
 
 <section class="card-container">
   {% for game in games %}
-  <div class="card">
+  <article>
     <a href="{% url 'game-detail' game.id %}">
     <div class="card-content">
       <h2 class="card-title">{{ game.name }}</h2>
       
     </div>
     </a>
-  </div>
+  </article>
   {% endfor %}
 </section>
 
